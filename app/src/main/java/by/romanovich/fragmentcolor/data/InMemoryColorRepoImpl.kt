@@ -17,8 +17,6 @@ class InMemoryColorRepoImpl : ColorsRepo {
             ColorEntity(generateId(), "Cyan", Color.CYAN),
             ColorEntity(generateId(), "Magenta", Color.MAGENTA),
             ColorEntity(generateId(), "LGray", Color.LTGRAY),
-            ColorEntity(generateId(), "DGray", Color.DKGRAY),
-            ColorEntity(generateId(), "Gray", Color.GRAY),
             ColorEntity(generateId(), "Tr", Color.TRANSPARENT),
         )
     }

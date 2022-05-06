@@ -16,12 +16,15 @@ class MainActivity : AppCompatActivity(), ColorListFragment.Controller {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val masterFragment: Fragment = ColorListFragment()
-        //
-        supportFragmentManager
-            .beginTransaction()
-            .add(binding.masterFragmentContainer.id, masterFragment)
-            .commit()
+        if (savedInstanceState == null) {
+            val masterFragment: Fragment = ColorListFragment()
+            //для сохранения фрагмента и что бы не пересоздавался новый фрагмент(говорим что не нужно уничтожать фрагмент), вызовется онДестройвью но не вызовется онДестрой
+            masterFragment.retainInstance = true
+            supportFragmentManager
+                .beginTransaction()
+                .add(binding.masterFragmentContainer.id, masterFragment)
+                .commit()
+        }
     }
 
     override fun openColorScreen(color: ColorEntity) {

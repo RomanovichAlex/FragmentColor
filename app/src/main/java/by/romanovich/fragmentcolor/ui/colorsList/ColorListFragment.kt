@@ -21,12 +21,21 @@ class ColorListFragment : Fragment(R.layout.fragment_colors_list) {
     private val binding: FragmentColorsListBinding
         get() = _binding!!
 
+    //для сохранения цвета при повороте
+    private var currentColor: ColorEntity? = null
+
     //при создании адаптера должны создать коллбэк,itemClickCallback
     private val colorsAdapter = ColorsAdapter{
 //открываем фрагмент
         controller.openColorScreen(it)
+        //сохраняем состояние
+        currentColor = it
+        binding.root.setBackgroundColor(it.color)
         //Toast.makeText(requireContext(),it.name,Toast.LENGTH_SHORT).show()
     }
+
+
+
     //получаем доступ к репозиторию с цветами из нашего фрагмента
     private val colorsRepo: ColorsRepo by lazy { app.colorsRepo }
 
@@ -45,6 +54,11 @@ class ColorListFragment : Fragment(R.layout.fragment_colors_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentColorsListBinding.bind(view)
+        //если не равен нулю то
+        currentColor?.let {
+            binding.root.setBackgroundColor(it.color)
+        }
+
         initRecycler()
     }
 
