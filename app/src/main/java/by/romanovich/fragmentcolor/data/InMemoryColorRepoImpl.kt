@@ -1,6 +1,8 @@
-package by.romanovich.fragmentcolor
+package by.romanovich.fragmentcolor.data
 
 import android.graphics.Color
+import by.romanovich.fragmentcolor.domain.ColorEntity
+import by.romanovich.fragmentcolor.domain.ColorsRepo
 import java.util.*
 
 //реализация
